@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>รายการทั้งหมด</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="module" src="js/records.js"></script>
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Warehouse</h2>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="products.html"> Product</a>
+    <a href="inventory.html">Inventory</a>
+    <a href="records.html"class="active">Record</a>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+    <h2>รายการทั้งหมด</h2>
+
+    <div class="table-container">
+      <table id="recordsTable">
+        <thead>
+          <tr>
+            <th>เวลา</th>
+            <th>ชื่อสินค้า</th>
+            <th>จำนวน</th>
+            <th>ประเภท</th>
+            <th>ผู้ทำรายการ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- JS จะเติมข้อมูล -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

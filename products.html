@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>สินค้าในคลัง</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="module" src="js/products.js"></script>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Warehouse</h2>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="products.html"class="active"> Product</a>
+    <a href="inventory.html">Inventory</a>
+    <a href="records.html">Record</a>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <div class="content">
+    <h2>สินค้าในคลัง</h2>
+    <button class="btn btn-primary" onclick="openModal('productModal')">+ เพิ่มสินค้า</button>
+
+    <div class="table-container">
+      <table id="productsTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>ชื่อสินค้า</th>
+            <th>รายละเอียด</th>
+            <th>การจัดการ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- JS จะเติมข้อมูล -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal เพิ่ม/แก้ไขสินค้า -->
+  <div id="productModal" class="modal">
+    <div class="modal-content">
+      <h3>เพิ่ม / แก้ไขสินค้า</h3>
+      <input type="hidden" id="productId">
+      <input type="text" id="productName" placeholder="ชื่อสินค้า">
+      <input type="text" id="productDesc" placeholder="รายละเอียดสินค้า">
+      <button class="btn btn-primary" onclick="saveProduct()">บันทึก</button>
+      <button class="btn btn-danger" onclick="closeModal('productModal')">ปิด</button>
+    </div>
+  </div>
+</body>
+</html>

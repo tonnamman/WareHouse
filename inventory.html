@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="module" src="js/inventory.js"></script>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Warehouse</h2>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="products.html">Product</a>
+    <a href="inventory.html"class="active">Inventory</a>
+    <a href="records.html">Record</a>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <div class="content">
+    <h2>Inventory</h2>
+    <button class="btn btn-success" onclick="openModal('inModal')">+ รับสินค้าเข้า</button>
+    <button class="btn btn-danger" onclick="openModal('outModal')">- จ่ายสินค้าออก</button>
+    
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr><th>ID</th><th>ชื่อสินค้า</th><th>จำนวน</th><th>ประเภท</th></tr>
+        </thead>
+        <tbody id="inventoryTable">
+          <!-- JS จะใส่ข้อมูลตรงนี้ -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+   <div id="inModal" class="modal">
+    <div class="modal-content">
+      <h3>รับสินค้าเข้า</h3>
+      <select id="inProductSelect"></select>
+      <input type="number" id="inQuantity" placeholder="จำนวน">
+      <button class="btn btn-success" onclick="saveIn()">บันทึก</button>
+      <button class="btn btn-danger" onclick="closeModal('inModal')">ปิด</button>
+    </div>
+  </div>
+
+  <!-- Modal จ่ายสินค้าออก -->
+  <div id="outModal" class="modal">
+    <div class="modal-content">
+      <h3>จ่ายสินค้าออก</h3>
+      <select id="outProductSelect"></select>
+      <input type="number" id="outQuantity" placeholder="จำนวน">
+      <button class="btn btn-danger" onclick="saveOut()">บันทึก</button>
+      <button class="btn btn-warning" onclick="closeModal('outModal')">ปิด</button>
+    </div>
+  </div>
+</body>
+</html>
