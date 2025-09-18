@@ -17,7 +17,6 @@ async function loadProducts() {
       <td>${p.description || ''}</td>
       <td>
         <button class="btn btn-warning" onclick="editProduct(${p.id}, '${p.name}', '${p.description || ''}')">แก้ไข</button>
-        <button class="btn btn-danger" onclick="deleteProduct(${p.id})">ลบ</button>
       </td>
     `;
     tbody.appendChild(tr);
@@ -66,17 +65,7 @@ window.editProduct = (id, name, desc) => {
   openModal('productModal');
 };
 
-// ลบสินค้า
-window.deleteProduct = async id => {
-  if (!confirm('ต้องการลบสินค้านี้ใช่หรือไม่?')) return;
-  const { error } = await supabase.from('products').delete().eq('id', id);
-  if (error) {
-    console.error(error);
-    alert('ลบไม่สำเร็จ');
-  } else {
-    loadProducts();
-  }
-};
+
 
 // ล้าง form
 function clearForm() {

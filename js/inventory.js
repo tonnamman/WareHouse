@@ -94,6 +94,7 @@ window.saveIn = async () => {
 window.saveOut = async () => {
   const product_id = document.getElementById('outProductSelect').value;
   const qty = parseInt(document.getElementById('outQuantity').value);
+  const user_id = localStorage.getItem('user_id');
 
   const { error } = await supabase.from('inventory').insert([
     { product_id: product_id, quantity: qty, type: 'จ่ายออก', user_id: parseInt(user_id) }
