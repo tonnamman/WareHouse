@@ -1,0 +1,41 @@
+name: Minimal Deploy warehouse-app
+
+# Trigger ทุกครั้ง push เข้า main
+on:
+  push:
+    branches:
+      - main  # ← ถ้า branch ของคุณชื่ออื่น ให้แก้ตรงนี้
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2️⃣ ติดตั้ง Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      # 3️⃣ ติดตั้ง Netlify CLI
+      - name: Install Netlify CLI
+        run: npm install -g netlify-cli
+
+      # 4️⃣ Deploy ไป Netlify
+      - name: Deploy to Netlify
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}   # ← ใส่ token ของคุณใน GitHub Secrets
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}         # ← ใส่ Site ID ของเว็บคุณใน GitHub Secrets
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}             # ← ใส่ Supabase URL ของคุณ
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}   # ← ใส่ Supabase ANON KEY ของคุณ
+        run: |
+          # สร้างไฟล์ .env สำหรับ Supabase
+          echo "SUPABASE_URL=$SUPABASE_URL" >> .env
+          echo "SUPABASE_ANON_KEY=$SUPABASE_ANON_KEY" >> .env
+
+          # Deploy โฟลเดอร์ root ของ warehouse-app
+          netlify deploy --prod --dir=. --site=$NETLIFY_SITE_ID
